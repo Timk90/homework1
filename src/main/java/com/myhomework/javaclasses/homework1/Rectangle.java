@@ -1,4 +1,4 @@
-package com.myhomework.javaclasses;
+package com.myhomework.javaclasses.homework1;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

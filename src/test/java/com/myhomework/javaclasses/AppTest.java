@@ -1,5 +1,6 @@
 package com.myhomework.javaclasses;
 
+import com.myhomework.javaclasses.homework1.MyClass;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;

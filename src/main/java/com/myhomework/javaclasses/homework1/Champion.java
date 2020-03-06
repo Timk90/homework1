@@ -1,6 +1,4 @@
-package com.myhomework.javaclasses;
-
-import javax.security.auth.login.AccountException;
+package com.myhomework.javaclasses.homework1;
 
 /**
  * Чемпион.

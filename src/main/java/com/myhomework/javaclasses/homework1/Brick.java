@@ -1,8 +1,18 @@
-package com.myhomework.javaclasses;
+package com.myhomework.javaclasses.homework1;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Example of using lombok framework.
+ * It is an easy way to implements all the commonly used methods like getters/setters.
+ * Useful to avoid a repeatable code.
+ * there are several ways to define constuctors:
+ * 1) required  args  - for all the private fields,
+ * 2) all args - for all the fields,
+ * 3) no args - for no fields
+ *
+ */
 @Data
 @RequiredArgsConstructor
 public class Brick {
