@@ -3,6 +3,9 @@ package com.myhomework.javaclasses.homework1;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Прямоугольник.
+ */
 @Data
 @RequiredArgsConstructor
 public class Rectangle {
@@ -10,7 +13,10 @@ public class Rectangle {
     private final int height;
     private final int width;
 
-    public void getArea(){
+    /**
+     * Вычислить площадь.
+     */
+    public void getArea() {
         System.out.println(height * width);
     }
 
