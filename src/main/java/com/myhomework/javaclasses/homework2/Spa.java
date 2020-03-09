@@ -45,7 +45,7 @@ public class Spa {
                     .filter(e -> e.containsKey(hummy))
                     .findFirst();
             if(first.isPresent()){
-            first.ifPresent(e -> e.get(hummy).increaseServiceCounter());
+                first.ifPresent(e -> e.get(hummy).increaseServiceCounter());
             }else{
                 peopleUnderService.put(hummy, new HumanData(hummy));
             }
@@ -58,6 +58,17 @@ public class Spa {
             System.out.println("До новых встреч Mr." + hummy.getName() + "! Вы были у нас "+humanData.serviceCounter+" раз.");
         } else {
             System.out.println("Return after wake up");
+        }
+    }
+
+    /**
+     * Подходи, налетай свое тело расслабляй.
+     *
+     * @param hummies - человечище.
+     */
+    public void service(Human... hummies) {
+        for(Human hummy : hummies) {
+            service(hummy);
         }
     }
 

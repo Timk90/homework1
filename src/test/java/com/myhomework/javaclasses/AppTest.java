@@ -19,6 +19,7 @@ public class AppTest
         extends TestCase {
 
     MyClass myClass;
+    List<Human> humans;
 
     /**
      * Set up initials settings.
@@ -26,6 +27,7 @@ public class AppTest
     @Before
     public void setUp() {
         myClass = new MyClass();
+        humans = null;
     }
 
     /**
@@ -97,6 +99,7 @@ public class AppTest
         human.sleep();
         assertFalse(human.checkSleep());
         System.out.println(human.getNation());
+        System.out.println(human.getBMI());
     }
 
     /**
@@ -104,7 +107,7 @@ public class AppTest
      */
     @Test
     public void testHumanCounting() {
-        List<Human> humans = new ArrayList<>();
+        humans = new ArrayList<>();
         Stream.iterate(0, i -> i + 1)
                 .limit(100)
                 .map(e -> {
@@ -113,9 +116,7 @@ public class AppTest
                     return human;
                 })
                 .forEach(e -> System.out.println(e.getName() + " from " + e.getNation()));
-        assertEquals("Generated human 100", humans.get(99).getName());
-        assertEquals(100, HumanProvider.getGeneratedHumanCounter());
-        assertEquals(100, Human.getHumanCounter());
+        assertEquals(HumanProvider.getGeneratedHumanCounter(), Human.getHumanCounter()-1);
     }
 
     /**
@@ -124,10 +125,10 @@ public class AppTest
     @Test
     public void testSpaService() {
         Spa spa = new Spa();
+        humans = new ArrayList<>();
 
         Human firstHuman = HumanProvider.getEntity();
 
-        List<Human> humans = new ArrayList<>();
         humans.add(firstHuman);
 
         Stream.iterate(1, i -> i + 1)
@@ -173,6 +174,24 @@ public class AppTest
         firstHuman.sleep();
         spa.service(firstHuman);
         assertEquals(101, spa.getTotalVisits());
+    }
+
+    /**
+     * Проверка Spa для нескольких людей людей.
+     */
+    @Test
+    public void testSpaServiceForSeveralVisitors() {
+        Spa spa = new Spa();
+
+        Human firstHuman = HumanProvider.getEntity();
+        Human secondHuman = HumanProvider.getEntity();
+        Human thirdHuman = HumanProvider.getEntity();
+        Human fourthHuman = HumanProvider.getEntity();
+        Human fifthHuman = HumanProvider.getEntity();
+
+        spa.service(firstHuman, secondHuman, thirdHuman, fourthHuman, fifthHuman);
+
+        assertEquals(5, spa.getTotalVisits());
     }
 
     /**
