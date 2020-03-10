@@ -1,13 +1,15 @@
 package com.myhomework.javaclasses;
 
-import com.myhomework.javaclasses.homework3.Developer;
-import com.myhomework.javaclasses.homework3.Employee;
-import com.myhomework.javaclasses.homework3.Human;
-import com.myhomework.javaclasses.homework3.Manager;
-import com.myhomework.javaclasses.homework3.Tester;
-import com.myhomework.javaclasses.homework3.Worker;
-import com.myhomework.javaclasses.homework3.WorkerEntityProvider;
+import com.myhomework.javaclasses.homework3.spa.Developer;
+import com.myhomework.javaclasses.homework3.spa.Employee;
+import com.myhomework.javaclasses.homework3.spa.Human;
+import com.myhomework.javaclasses.homework3.spa.Manager;
+import com.myhomework.javaclasses.homework3.spa.exceptions.SleepException;
+import com.myhomework.javaclasses.homework3.spa.Tester;
+import com.myhomework.javaclasses.homework3.spa.Worker;
+import com.myhomework.javaclasses.homework3.spa.generator.WorkerEntityProvider;
 import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,10 +43,19 @@ public class WorkersTests extends TestCase {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Проверка того, что метод sleep() выбрасывает исключение {@link SleepException}.
+     */
     @Test
-    public void testSleepException(){
-        Worker tester = WorkerEntityProvider.getEntity(Tester.class);
-        ((Human)tester).sleep();
-
+    public void testSleepException() {
+        Human tester = WorkerEntityProvider.getEntity(Tester.class);
+        tester.sleep();
+        tester.wakeUp();
+        tester.sleep();
+        Assert.assertThrows("", SleepException.class, tester::sleep);
+        tester.wakeUp();
+        ((Worker) tester).work();
+        tester.sleep();
+        ((Worker) tester).work();
     }
 }

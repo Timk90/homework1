@@ -1,4 +1,4 @@
-package com.myhomework.javaclasses.homework3;
+package com.myhomework.javaclasses.homework3.spa;
 
 public class Developer extends Human implements Worker {
 

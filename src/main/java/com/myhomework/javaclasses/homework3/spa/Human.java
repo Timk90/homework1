@@ -1,4 +1,6 @@
-package com.myhomework.javaclasses.homework3;
+package com.myhomework.javaclasses.homework3.spa;
+
+import com.myhomework.javaclasses.homework3.spa.exceptions.SleepException;
 
 public abstract class Human {
 
@@ -14,11 +16,11 @@ public abstract class Human {
 
     boolean isAsleep;
 
-    public void sleep() {
+    public void sleep() throws SleepException {
         if (!isAsleep) {
             isAsleep = true;
         } else {
-            throw new SleepException(this);
+            throw  new SleepException(this);
         }
     }
 

@@ -1,4 +1,6 @@
-package com.myhomework.javaclasses.homework3;
+package com.myhomework.javaclasses.homework3.spa.exceptions;
+
+import com.myhomework.javaclasses.homework3.spa.Human;
 
 public class SleepException extends RuntimeException {
     private SleepException() {
@@ -10,5 +12,5 @@ public class SleepException extends RuntimeException {
 
     public SleepException(Human human) {
         super(human.getName() +" "+human.getSurname()+" сейчас спит и ничего не может делать.");
-    }
+}
 }
