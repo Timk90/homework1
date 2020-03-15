@@ -19,7 +19,10 @@ public class Library implements BookOwner {
                 .findFirst()
                 .ifPresentOrElse((e) -> {
                     throw new TakeBookException("This book is already added to the library.", e);
-                }, () -> books.add(book));
+                }, () -> {
+                    books.add(book);
+                    System.out.println("New book "+book.getName()+":"+book.getPageQuantity()+" pp. writen by "+book.getAuthor().getSurname()+" is added.");
+                });
     }
 
     @Override
