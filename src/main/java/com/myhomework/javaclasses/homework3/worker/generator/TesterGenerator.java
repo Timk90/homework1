@@ -1,6 +1,6 @@
-package com.myhomework.javaclasses.homework3.spa.generator;
+package com.myhomework.javaclasses.homework3.worker.generator;
 
-import com.myhomework.javaclasses.homework3.spa.Tester;
+import com.myhomework.javaclasses.homework3.worker.Tester;
 
 import java.util.Random;
 

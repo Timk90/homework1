@@ -1,14 +1,10 @@
-package com.myhomework.javaclasses.homework3.spa.generator;
+package com.myhomework.javaclasses.homework3.worker.generator;
 
-import com.myhomework.javaclasses.homework3.spa.Developer;
-import com.myhomework.javaclasses.homework3.spa.Employee;
-import com.myhomework.javaclasses.homework3.spa.Manager;
-import com.myhomework.javaclasses.homework3.spa.Tester;
-import com.myhomework.javaclasses.homework3.spa.Worker;
-import com.myhomework.javaclasses.homework3.spa.generator.DeveloperGenerator;
-import com.myhomework.javaclasses.homework3.spa.generator.EmployeeGenerator;
-import com.myhomework.javaclasses.homework3.spa.generator.ManagerGenerator;
-import com.myhomework.javaclasses.homework3.spa.generator.TesterGenerator;
+import com.myhomework.javaclasses.homework3.worker.Developer;
+import com.myhomework.javaclasses.homework3.worker.Employee;
+import com.myhomework.javaclasses.homework3.worker.Manager;
+import com.myhomework.javaclasses.homework3.worker.Tester;
+import com.myhomework.javaclasses.homework3.worker.Worker;
 
 import java.util.HashMap;
 import java.util.function.Supplier;

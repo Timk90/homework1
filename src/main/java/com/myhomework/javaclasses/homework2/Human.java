@@ -46,11 +46,11 @@ public class Human {
                  int age,
                  Nationality nationality
     ) {
-        this.name = name;
-        this.height = height;
-        this.weight = weight;
-        this.age = age;
-        this.nationality = nationality;
+        this.name = name.length() > 0 ? name : "Unknown";
+        this.height = height > 0 ? height : 0;
+        this.weight = weight > 0 ? weight : 0;
+        this.age = age > 0 ? age : 0;
+        this.nationality = nationality != null ? nationality : Nationality.NONE;
         isAsleep = false;
         increment();
     }
@@ -116,6 +116,17 @@ public class Human {
     }
 
     /**
+     * Человек представляется.
+     */
+    public void introduce(){
+        System.out.println("My name is "
+                +this.name+", I am from "+this.getNation()
+                +" and my weight is "+this.weight
+                +". I am tall "+this.height
+                +". I am "+this.age+" y.o");
+    }
+
+    /**
      * Национальность.
      */
     public enum Nationality {
@@ -139,5 +150,17 @@ public class Human {
         public static Nationality getByNumber(int number) {
             return Nationality.values()[number];
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Human{" +
+                "name='" + name + '\'' +
+                ", height=" + height +
+                ", weight=" + String.format("%.2f",weight) +
+                ", age=" + age +
+                ", nationality=" + nationality +
+                ", isAsleep=" + isAsleep +
+                '}';
     }
 }

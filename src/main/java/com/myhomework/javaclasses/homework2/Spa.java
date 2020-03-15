@@ -20,11 +20,6 @@ public class Spa {
     private final List<String> foods = new ArrayList<>();
 
     /**
-     * Число визитов.
-     */
-    int totalVisitCounter;
-
-    /**
      * Список визитеров.
      */
     private final Map<Human, HumanData> peopleUnderService = new HashMap<>();
@@ -78,7 +73,7 @@ public class Spa {
      * @return - общее число визитов.
      */
     public int getTotalVisits(){
-        totalVisitCounter = 0;
+        int totalVisitCounter = 0;
         for (Map.Entry<Human, HumanData> entry : peopleUnderService.entrySet())
         {
             totalVisitCounter += entry.getValue().serviceCounter;

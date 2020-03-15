@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Rectangle {
 
+    private final String name;
     private final int height;
     private final int width;
 

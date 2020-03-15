@@ -10,7 +10,7 @@ public interface BookOwner {
      *
      * @param book - книга.
      */
-    boolean addBook(Book book);
+    void addBook(Book book);
 
     /**
      * Отдать книгу.

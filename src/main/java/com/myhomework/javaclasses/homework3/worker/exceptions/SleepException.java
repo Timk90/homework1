@@ -1,6 +1,6 @@
-package com.myhomework.javaclasses.homework3.spa.exceptions;
+package com.myhomework.javaclasses.homework3.worker.exceptions;
 
-import com.myhomework.javaclasses.homework3.spa.Human;
+import com.myhomework.javaclasses.homework3.worker.Human;
 
 public class SleepException extends RuntimeException {
     private SleepException() {

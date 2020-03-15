@@ -12,8 +12,7 @@ public class TakeBookException extends RuntimeException {
     }
 
     public TakeBookException(String message, Book book) {
-        super(message);
-        System.out.println(book);
+        super(message+" Book : "+book.getName());
     }
 
     public TakeBookException(String message, Throwable cause) {

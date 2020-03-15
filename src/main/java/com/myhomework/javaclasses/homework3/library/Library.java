@@ -8,21 +8,27 @@ public class Library implements BookOwner {
     List<Book> books = new ArrayList<>();
 
     @Override
-    public boolean addBook(Book book) {
-        if(books.size() > 5){
+    public void addBook(Book book) {
+
+        if (books.size() > 5) {
             throw new TakeBookException("It is impossible add a new book", book);
         }
-        for (Book availableBook : books) {
-            if (book.equals(availableBook)) {
-                return false;
-            }
-        }
-        books.add(book);
-        return true;
+
+        books.stream()
+                .filter(e -> e.equals(book))
+                .findFirst()
+                .ifPresent(books::add);
     }
 
     @Override
     public Book giveBook(String bookName) {
-        return null;
+        return books.stream()
+                .filter(e -> e.getName().equals(bookName))
+                .findFirst()
+                .orElseThrow(() -> new TakeBookException(String.format("THERE IS NO SUCH book %s in the Library", bookName)));
+    }
+
+    public int getSize() {
+        return books.size();
     }
 }

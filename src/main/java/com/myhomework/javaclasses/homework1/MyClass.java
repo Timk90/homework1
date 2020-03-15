@@ -1,5 +1,6 @@
 package com.myhomework.javaclasses.homework1;
 
+import javax.sql.XAConnection;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -12,8 +13,15 @@ public class MyClass {
 
     }
 
-    public static long doMultiplyTwo(int a){
-        return 2*a;
+    public static int doMultiplyTwo(int a){
+        int tmp = 0;
+        try{
+            tmp = a  > Integer.MAX_VALUE/2 ? 0: a*2;
+        }catch (ArithmeticException e){
+            System.out.println("Arithmetic exception");
+            return a;
+        }
+        return tmp;
     }
 
     public static void showSum(int a, int b){
@@ -48,7 +56,13 @@ public class MyClass {
         return value % 5 == 0;
     }
 
-    public int capacity(int value){
-        return Integer.toBinaryString(value).length();
+    public static int capacity(int value){
+
+        int capacity = 0;
+        while(value > 0){
+            capacity++;
+            value = value >>> 1;
+        }
+        return capacity;
     }
 }

@@ -8,10 +8,13 @@ public class App {
         MyClass myClass = new MyClass();
         myClass.showStrCountTimes("Hello, world!", 10);
         myClass.printArray(new Object[]{10f, 123L, "shit", true, new MyClass(), 1 < 3});
-        new Rectangle(5, 6).getArea();
+        new Rectangle("first rectangle", 5, 6).getArea();
         Brick brick = new Brick("First brick", 5, 10, 20);
         brick.getVolume();
         brick.getAllSides();
+        brick.getFrontArea();
+        brick.getSideArea();
+        brick.getTopBottomArea();
         System.out.println();
         Champion champion1 = new Champion("First", 10, 15, 25);
         Champion champion2 = new Champion("Second", 10, 15, 25);

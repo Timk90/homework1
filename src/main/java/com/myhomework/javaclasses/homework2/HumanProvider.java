@@ -20,7 +20,7 @@ public final class HumanProvider {
         generatedHumanCounter++;
         return new Human(
                 "Generated human " + generatedHumanCounter,
-                (new Random().nextInt() + 1) * 150,
+                (new Random().nextInt(50) + 150),
                 (new Random().nextDouble() + 0.5) * 100,
                 (new Random().nextInt(35) + 1) + 25,
                 Human.Nationality.getByNumber(new Random().nextInt(5))

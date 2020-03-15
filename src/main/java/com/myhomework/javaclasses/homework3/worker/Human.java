@@ -1,20 +1,19 @@
-package com.myhomework.javaclasses.homework3.spa;
+package com.myhomework.javaclasses.homework3.worker;
 
-import com.myhomework.javaclasses.homework3.spa.exceptions.SleepException;
+import com.myhomework.javaclasses.homework3.worker.exceptions.SleepException;
 
 public abstract class Human {
 
     private String name;
     private String surname;
     private int age;
+    boolean isAsleep;
 
     public Human(String name, String surname, int age) {
         this.name = name;
         this.surname = surname;
         this.age = age;
     }
-
-    boolean isAsleep;
 
     public void sleep() throws SleepException {
         if (!isAsleep) {
@@ -32,7 +31,7 @@ public abstract class Human {
         System.out.println(this.toString());
     }
 
-    public boolean checkSleep(){
+    public boolean getSleepState(){
         return isAsleep;
     }
 

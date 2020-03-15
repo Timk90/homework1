@@ -1,4 +1,4 @@
-package com.myhomework.javaclasses.homework3.spa;
+package com.myhomework.javaclasses.homework3.worker;
 
 public class Developer extends Human implements Worker {
 
@@ -8,7 +8,7 @@ public class Developer extends Human implements Worker {
 
     @Override
     public void work() {
-        if(!checkSleep()){
+        if(!getSleepState()){
             System.out.println("I am developing now");
         }else{
             System.out.println("I cannot develop while sleeping");
