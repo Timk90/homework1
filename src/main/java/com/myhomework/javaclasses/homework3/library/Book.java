@@ -37,4 +37,25 @@ public class Book {
     public void setAuthor(Human author) {
         this.author = author;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if(obj == null || obj.getClass() != this.getClass()){
+            return false;
+        }
+        Book book = (Book) obj;
+        return this.name == book.name && this.author == book.author && this.pageQuantity == book.pageQuantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "pageQuantity=" + pageQuantity +
+                ", name='" + name + '\'' +
+                ", author=" + author +
+                '}';
+    }
 }

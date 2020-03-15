@@ -1,7 +1,10 @@
 package com.myhomework.javaclasses;
 
-import com.myhomework.javaclasses.homework2.HumanProvider;
-import com.myhomework.javaclasses.homework2.Spa;
+import com.myhomework.javaclasses.homework3.library.Book;
+import com.myhomework.javaclasses.homework3.library.Library;
+import com.myhomework.javaclasses.homework3.library.Student;
+import com.myhomework.javaclasses.homework3.library.TakeBookException;
+import com.myhomework.javaclasses.homework3.library.TestBookGenerator;
 import com.myhomework.javaclasses.homework3.worker.Developer;
 import com.myhomework.javaclasses.homework3.worker.Employee;
 import com.myhomework.javaclasses.homework3.worker.Human;
@@ -58,52 +61,6 @@ public class Homework3Tests extends TestCase {
         System.out.println(human.getBMI());
     }
 
-
-    /**
-     * Проверка запрета посещения спа центра для спящих людей.
-     */
-    @Test
-    public void testSpaServiceForbiddenForSleepyVisitors() {
-        Spa spa = new Spa();
-
-        com.myhomework.javaclasses.homework2.Human firstHuman = HumanProvider.getEntity();
-
-        Stream.iterate(0, i -> i++)
-                .limit(100)
-                .forEach(e -> spa.service(firstHuman));
-
-        assertEquals(100, spa.getTotalVisits());
-        firstHuman.sleep();
-
-        Stream.iterate(0, i -> i++)
-                .limit(100)
-                .forEach(e -> spa.service(firstHuman));
-
-        assertEquals(100, spa.getTotalVisits());
-
-        firstHuman.sleep();
-        spa.service(firstHuman);
-        assertEquals(101, spa.getTotalVisits());
-    }
-
-    /**
-     * Проверка Spa для нескольких людей людей.
-     */
-    @Test
-    public void testSpaServiceForSeveralVisitors() {
-        Spa spa = new Spa();
-
-        com.myhomework.javaclasses.homework2.Human firstHuman = HumanProvider.getEntity();
-        com.myhomework.javaclasses.homework2.Human secondHuman = HumanProvider.getEntity();
-        com.myhomework.javaclasses.homework2.Human thirdHuman = HumanProvider.getEntity();
-        com.myhomework.javaclasses.homework2.Human fourthHuman = HumanProvider.getEntity();
-        com.myhomework.javaclasses.homework2.Human fifthHuman = HumanProvider.getEntity();
-
-        spa.service(firstHuman, secondHuman, thirdHuman, fourthHuman, fifthHuman);
-
-        assertEquals(5, spa.getTotalVisits());
-    }
-
     /**
      * Создает 300 произвольных рабочих, используя генератор.
      */
@@ -134,6 +91,39 @@ public class Homework3Tests extends TestCase {
         ((Worker) tester).work();
         tester.sleep();
         ((Worker) tester).work();
+    }
+
+    @Test
+    public void testLibrary() {
+        Library library = new Library();
+        List<Book> books = Stream.generate(TestBookGenerator::getEntity)
+                .limit(5)
+                .peek(library::addBook)
+                .collect(Collectors.toList());
+
+        assertEquals(5, library.getSize());
+        Assert.assertThrows(TakeBookException.class, () -> library.addBook(TestBookGenerator.getEntity()));
+        books.stream().forEach(System.out::println);
+
+        library.giveBook("Test book 2");
+        Assert.assertThrows(TakeBookException.class, () -> library.giveBook("Test book 2"));
+        assertEquals(4, library.getSize());
+    }
+
+    @Test
+    public void testStudentActions(){
+        Student student = new Student();
+        student.addBook(TestBookGenerator.getEntity("Student's book"));
+
+        assertNotNull(student.giveBook("Student's book"));
+        Assert.assertThrows(TakeBookException.class, () -> student.addBook(TestBookGenerator.getEntity("Student's book")));
+
+        student.sleep();
+        student.dropBook();
+        student.giveBook("Student's book");
+        student.sleep();
+        student.dropBook();
+        Assert.assertThrows(TakeBookException.class, () -> student.giveBook("Student's book"));
     }
 
     /**

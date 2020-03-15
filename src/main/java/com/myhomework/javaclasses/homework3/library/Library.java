@@ -8,24 +8,28 @@ public class Library implements BookOwner {
     List<Book> books = new ArrayList<>();
 
     @Override
-    public void addBook(Book book) {
+    public void addBook(Book book) throws TakeBookException {
 
-        if (books.size() > 5) {
-            throw new TakeBookException("It is impossible add a new book", book);
+        if (books.size() >= 5) {
+            throw new TakeBookException("It is impossible add a new book. Library is full", book);
         }
 
         books.stream()
                 .filter(e -> e.equals(book))
                 .findFirst()
-                .ifPresent(books::add);
+                .ifPresentOrElse((e) -> {
+                    throw new TakeBookException("This book is already added to the library.", e);
+                }, () -> books.add(book));
     }
 
     @Override
-    public Book giveBook(String bookName) {
-        return books.stream()
+    public Book giveBook(String bookName) throws TakeBookException {
+        Book book = books.stream()
                 .filter(e -> e.getName().equals(bookName))
                 .findFirst()
                 .orElseThrow(() -> new TakeBookException(String.format("THERE IS NO SUCH book %s in the Library", bookName)));
+        books.remove(book);
+        return book;
     }
 
     public int getSize() {

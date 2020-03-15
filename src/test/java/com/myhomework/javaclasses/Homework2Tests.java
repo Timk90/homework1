@@ -66,4 +66,49 @@ public class Homework2Tests extends TestCase {
 
         assertEquals(200, spa.getTotalVisits());
     }
+
+    /**
+     * Проверка Spa для нескольких людей людей.
+     */
+    @Test
+    public void testSpaServiceForSeveralVisitors() {
+        Spa spa = new Spa();
+
+        Human firstHuman = HumanProvider.getEntity();
+        Human secondHuman = HumanProvider.getEntity();
+        Human thirdHuman = HumanProvider.getEntity();
+        Human fourthHuman = HumanProvider.getEntity();
+        Human fifthHuman = HumanProvider.getEntity();
+
+        spa.service(firstHuman, secondHuman, thirdHuman, fourthHuman, fifthHuman);
+
+        assertEquals(5, spa.getTotalVisits());
+    }
+
+    /**
+     * Проверка запрета посещения спа центра для спящих людей.
+     */
+    @Test
+    public void testSpaServiceForbiddenForSleepyVisitors() {
+        Spa spa = new Spa();
+
+        com.myhomework.javaclasses.homework2.Human firstHuman = HumanProvider.getEntity();
+
+        Stream.iterate(0, i -> i++)
+                .limit(100)
+                .forEach(e -> spa.service(firstHuman));
+
+        assertEquals(100, spa.getTotalVisits());
+        firstHuman.sleep();
+
+        Stream.iterate(0, i -> i++)
+                .limit(100)
+                .forEach(e -> spa.service(firstHuman));
+
+        assertEquals(100, spa.getTotalVisits());
+
+        firstHuman.sleep();
+        spa.service(firstHuman);
+        assertEquals(101, spa.getTotalVisits());
+    }
 }
