@@ -47,9 +47,21 @@ public class Human {
                  Nationality nationality
     ) {
         this.name = name.length() > 0 ? name : "Unknown";
-        this.height = height > 0 ? height : 0;
-        this.weight = weight > 0 ? weight : 0;
-        this.age = age > 0 ? age : 0;
+        if (height > 0) {
+            this.height = height;
+        } else {
+            throw new IllegalArgumentException("Abnormal field value " + height);
+        }
+        if (weight > 0) {
+            this.weight = weight;
+        } else {
+            throw new IllegalArgumentException("Abnormal field value " + weight);
+        }
+        if (age > 0) {
+            this.age = age;
+        } else {
+            throw new IllegalArgumentException("Abnormal field value " + height);
+        }
         this.nationality = nationality != null ? nationality : Nationality.NONE;
         isAsleep = false;
         increment();
@@ -112,18 +124,18 @@ public class Human {
      * @return - BMI (body mass index)
      */
     public String getBMI() {
-        return height > 0 && weight > 0 ? String.format("BMI is : %.2f", weight / Math.pow(height/100f, 2.0)) : "Incorrect heigh/weight values.";
+        return height > 0 && weight > 0 ? String.format("BMI is : %.2f", weight / Math.pow(height / 100f, 2.0)) : "Incorrect heigh/weight values.";
     }
 
     /**
      * Человек представляется.
      */
-    public void introduce(){
+    public void introduce() {
         System.out.println("My name is "
-                +this.name+", I am from "+this.getNation()
-                +" and my weight is "+this.weight
-                +". I am tall "+this.height
-                +". I am "+this.age+" y.o");
+                + this.name + ", I am from " + this.getNation()
+                + " and my weight is " + this.weight
+                + ". I am tall " + this.height
+                + ". I am " + this.age + " y.o");
     }
 
     /**
@@ -157,7 +169,7 @@ public class Human {
         return "Human{" +
                 "name='" + name + '\'' +
                 ", height=" + height +
-                ", weight=" + String.format("%.2f",weight) +
+                ", weight=" + String.format("%.2f", weight) +
                 ", age=" + age +
                 ", nationality=" + nationality +
                 ", isAsleep=" + isAsleep +
